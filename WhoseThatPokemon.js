@@ -65,10 +65,10 @@ module.exports = {
         }]}).then(function(WTPMessage){
             //we are officially in the game
             
-
+            
             //"is the sent message from the user?"
             const filter = m => m.author == message.author.id;
-
+            
             //creating a message listener that listens to the filter
             const collector = new discord.MessageCollector(WTPMessage.channel, filter,{time: gameTime * 60000})
             
@@ -80,11 +80,11 @@ module.exports = {
             collector.on('collect', collected => {
                 
                 //on every message while a game is going on
-
+                
                 //make sure that it is not another user talking
                 if(collected.author.id != message.author.id)
                 return;
-
+                
                 
                 //otherwise
                 
@@ -105,7 +105,7 @@ module.exports = {
                     //stop the collector
                     collector.stop();
                 }
-
+                
                 //if the user types "cancel"
                 else if(collected.content.toLowerCase() == "cancel"){
                     //tell them that they cancelled the game
@@ -117,7 +117,7 @@ module.exports = {
                             text:'=wtp'
                         }
                     }]})
-
+                    
                     //stop the game
                     collector.stop();
                 }
@@ -184,10 +184,8 @@ async function ScrapeWebsite(){
 })
 
 //make sure there are going to be results, if not, then redo
-if(!rawResults || !rawResults.json || !rawResults.json.sprites){
-    console.error('Redoing.\n' + rawResults)
-    ScrapeWebsite();
-}
+if(!rawResults || !rawResults.json || !rawResults.json.sprites)
+ScrapeWebsite();
 
 //if there are results, return them
 else
