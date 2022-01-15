@@ -111,7 +111,7 @@ module.exports = {
                     //tell them that they cancelled the game
                     message.channel.send({embeds:[{
                         title:'Game Cancelled!',
-                        description:'You have decided to stop the game!',
+                        description:`You have decided to stop the game, the pokemon was: **${GameResultsJSON.name}**`,
                         color: colors.error,
                         footer:{
                             text:'=wtp'
